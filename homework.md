@@ -16,3 +16,7 @@
 - Play with routes and routes extentions ex. /hello, / , hello/2, /xyz
 - Install Postman app and make a workspace/collection > test API call
 - Write logic to handle GET, POST, PATCH, DELETE API calls and test them on Postman
+- Explore routing and use of ?, +, (), * in the routs
+- Use of regex in routes /a/, /.*fly$/
+- Reading the query params in the routes
+- Reding the dynamic routes
