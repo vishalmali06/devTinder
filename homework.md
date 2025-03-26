@@ -8,3 +8,11 @@
 - Install nodemon and update script inside package.json 
 - difference between caret and tilda (^ VS ~)
 - What is the use of "-g" while npm install
+
+- initialize git
+- .gitignore
+- Create a remote repo on github
+- push all code to remote origin 
+- Play with routes and routes extentions ex. /hello, / , hello/2, /xyz
+- Install Postman app and make a workspace/collection > test API call
+- Write logic to handle GET, POST, PATCH, DELETE API calls and test them on Postman
