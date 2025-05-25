@@ -32,3 +32,17 @@
 - Write a dumy auth middleware for all user routes, except /user/login
 - Error handing using app.use("/", (err, req, res, next) = {})
 
+- Create a free cluser on MongoDB official website (Mongo Atlas)
+- Install mongooes library
+- Connect your application to the Database "Connection-url"/devTinder
+- Call the connectDB function and connect to database before starting application on 7777
+- create a userSchema & user Model 
+- create POST /signup API to add data to database
+- Push some documents using API calls from postman
+- Error Handling using try, catch
+
+- Diffrerence between Object and JSON ? 
+- Add the express.json middleware to your app
+- Make your signup API dynamic to recive data from the end user
+
+
