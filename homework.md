@@ -55,6 +55,12 @@
 - What are options in a Model.findOneAndUpdate method, explore more about it 
 - API - Update the user API with emailId
 
+- Explore schematype options from the documentation 
+- add required, unique, lowercase, min, minLength, trim
+- Add default 
+- Create custom validate function for gender
+- Improve the DB schema - PUT all required appropriate validation on each fields in Schema 
+- Add timestamps to the userSchema 
 
 
 
