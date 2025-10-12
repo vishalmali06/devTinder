@@ -61,6 +61,11 @@
 - Create custom validate function for gender
 - Improve the DB schema - PUT all required appropriate validation on each fields in Schema 
 - Add timestamps to the userSchema 
+- Add API level validation on the Patch request & Sign post api
+- DATA Sanitizatiog - Add API validation for each fields
+- Install express-validator 
+- Explore validator library function and use validations 
+- NEVER TRUST req.body
 
 
 
