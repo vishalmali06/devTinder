@@ -68,4 +68,7 @@
 - NEVER TRUST req.body
 
 
+- Validate Data in Signup API 
+- Install bcrypt package 
+- Create PasswordHash using bcrypt.hash and save the users with encripted password 
 
