@@ -8,9 +8,12 @@ const {
 } = require("./utils/validation");
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
+const cookieParser = require("cookie-parser");
+const { userAuth } = require("./middlewares/auth");
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 
 app.post("/signup", signupValidation, async (req, res) => {
   const errors = validationResult(req);
@@ -51,16 +54,40 @@ app.post("/login", async (req, res) => {
     }
 
     // 🔐 Compare password
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await user.validatePassword(password);
     if (!isMatch) {
       return res.status(401).send("❌ Invalid credentials");
     }
 
+    const token = await user.getJWT();
+
+    console.log(token);
+    res.cookie("token", token, {
+      expires: new Date(Date.now() + 8 * 3600000),
+    });
     // ✅ Successful login
     res.send("✅ Login successful!");
   } catch (err) {
     res.status(400).send("❌ ERROR: " + err.message);
   }
+});
+
+app.get("/profile", userAuth, async (req, res) => {
+  try {
+    const user = req.user;
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.send(user);
+  } catch (err) {
+    res.status(401).send("ERROR: " + err.message);
+  }
+});
+
+app.post("/sendConnectionRequest", userAuth, async (req, res) => {
+  const user = req.user;
+  console.log("Sending connection request");
+  res.send(user.firstName + " Send the Connection Request!");
 });
 
 // GET /user - Get user by email from request body
