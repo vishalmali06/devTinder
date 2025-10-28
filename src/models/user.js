@@ -35,7 +35,7 @@ const userSchema = new mongoose.Schema(
         }
       },
     },
-    phototUrl: {
+    photoUrl: {
       type: String,
       default:
         "https://www.pnrao.com/wp-content/uploads/2023/06/dummy-user-male.jpg",

@@ -4,12 +4,10 @@ const { validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const {
-  signupValidation,
-  updateUserValidation,
-  deleteUserValidation,
+  validateSignUpData,
 } = require("../utils/validation");
 
-authRouter.post("/signup", signupValidation, async (req, res) => {
+authRouter.post("/signup", validateSignUpData, async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
@@ -64,6 +62,13 @@ authRouter.post("/login", async (req, res) => {
   } catch (err) {
     res.status(400).send("❌ ERROR: " + err.message);
   }
+});
+
+authRouter.post("/logout", async (req, res) => {
+  res.cookie("token", null, {
+    expires: new Date(Date.now()),
+  });
+  res.send("Logout Successful!");
 });
 
 module.exports = authRouter;

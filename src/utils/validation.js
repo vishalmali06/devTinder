@@ -1,7 +1,7 @@
 // utils/validation.js
 const { body } = require("express-validator");
 
-const signupValidation = [
+const validateSignUpData = [
   body("firstName")
     .notEmpty()
     .withMessage("First name is required")
@@ -40,51 +40,60 @@ const signupValidation = [
     .withMessage("Gender must be male, female, or other"),
 ];
 
-const updateUserValidation = [
-  body("userId")
-    .notEmpty()
-    .withMessage("User ID is required")
-    .isMongoId()
-    .withMessage("Invalid User ID format"),
+// const validateEditProfile = [
+//   body("userId")
+//     .notEmpty()
+//     .withMessage("User ID is required")
+//     .isMongoId()
+//     .withMessage("Invalid User ID format"),
 
-  body("photoUrl")
-    .optional()
-    .isURL()
-    .withMessage("photoUrl must be a valid URL"),
+//   body("photoUrl")
+//     .optional()
+//     .isURL()
+//     .withMessage("photoUrl must be a valid URL"),
 
-  body("about")
-    .optional()
-    .isString()
-    .isLength({ max: 200 })
-    .withMessage("About section too long (max 200 chars)"),
+//   body("about")
+//     .optional()
+//     .isString()
+//     .isLength({ max: 200 })
+//     .withMessage("About section too long (max 200 chars)"),
 
-  body("gender")
-    .optional()
-    .isIn(["male", "female", "other"])
-    .withMessage("Gender must be male, female, or other"),
+//   body("gender")
+//     .optional()
+//     .isIn(["male", "female", "other"])
+//     .withMessage("Gender must be male, female, or other"),
 
-  body("age")
-    .optional()
-    .isInt({ min: 1 })
-    .withMessage("Age must be a valid positive number"),
+//   body("age")
+//     .optional()
+//     .isInt({ min: 1 })
+//     .withMessage("Age must be a valid positive number"),
 
-  body("skills")
-    .optional()
-    .isArray()
-    .withMessage("Skills must be an array of strings"),
-];
+//   body("skills")
+//     .optional()
+//     .isArray()
+//     .withMessage("Skills must be an array of strings"),
+// ];
 
-// ✅ Validation for delete user route
-const deleteUserValidation = [
-  body("userId")
-    .notEmpty()
-    .withMessage("User ID is required")
-    .isMongoId()
-    .withMessage("Invalid userId format"),
-];
+const validateEditProfile = (req) => {
+  const allowedEditFields = [
+    "firstName",
+    "lastName",
+    "emailId",
+    "photoUrl",
+    "gender",
+    "age",
+    "about",
+    "skills",
+  ];
+
+  const isEditAllowed = Object.keys(req.body).every((field) =>
+    allowedEditFields.includes(field)
+  );
+
+  return isEditAllowed;
+};
 
 module.exports = {
-  signupValidation,
-  updateUserValidation,
-  deleteUserValidation,
+  validateSignUpData,
+  validateEditProfile,
 };
