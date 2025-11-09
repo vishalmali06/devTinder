@@ -110,3 +110,13 @@
 
 - Read this artivle about cmpound indexes - https://mongoosejs.com/docs/api/schema.html#Schema.prototype.index() and https://www.mongodb.com/docs/manual/core/indexes/index-types/index-compound/create-compound-index/#std-label-index-create-compound
 - ALWAYS THINK ABOUT CORNER CASES 
+
+- Write code with proper validation for POST /request/review/:status/:requestId
+- Thought process - POST VS GET
+- Read about Ref and Populate 
+- Create GET /user/requests/received with all the checks 
+- Create GET /user/connections
+
+- Logic for GET /feed API
+- Explore the $nin, $and, $ne and other query operators 
+ 
