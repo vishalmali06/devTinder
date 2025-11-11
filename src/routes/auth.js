@@ -26,8 +26,14 @@ authRouter.post("/signup", validateSignUpData, async (req, res) => {
     });
 
     // 💾 Save to DB
-    await userObj.save();
-    res.send("✅ User added successfully!");
+    const savedUser = await userObj.save();
+    const token = await savedUser.getJWT();
+
+    res.cookie("token", token, {
+      expires: new Date(Date.now() + 8 * 3600000),
+    });
+
+    res.json({ message: "✅ User dded successfully!", data: savedUser });
   } catch (err) {
     res.status(400).send("❌ Error saving the user: " + err.message);
   }
