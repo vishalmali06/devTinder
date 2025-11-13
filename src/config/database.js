@@ -1,7 +1,7 @@
 // database.js
-const mongoose = require('mongoose');
-const DB_URL = 'mongodb+srv://vishalmali06:lsgTbSbkeqNXj98J@namastenode.ypdqp.mongodb.net/devTinder';
+const mongoose = require("mongoose");
 const connectDB = async () => {
-    await mongoose.connect(DB_URL);
+  console.log(process.env.DB_CONNECTION_SECRET);
+  await mongoose.connect(process.env.DB_CONNECTION_SECRET);
 };
 module.exports = connectDB;
