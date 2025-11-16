@@ -5,7 +5,6 @@ const ConnectionRequestModel = require("../models/connectionRequest");
 
 // This job will run at 9 AM in the morning every day
 cron.schedule("0 9 * * *", async () => {
-//   console.log("Hello World, " + new Date());
   // Send emails to all people who got requests the previous day
 
   try {
@@ -25,8 +24,6 @@ cron.schedule("0 9 * * *", async () => {
       ...new Set(pendingRequestsOfYesterday.map((req) => req.toUserId.emailId)),
     ];
 
-    console.log(listOfEmails);
-
     for (const email of listOfEmails) {
       // Send Emails
       try {
@@ -34,12 +31,11 @@ cron.schedule("0 9 * * *", async () => {
           "New Friend Request pending for " + email,
           "There are so many friend requests pending, please login to the vishalmali.com"
         );
-        console.log(res);
       } catch (error) {
-        console.log(error);
+        res.status(400).send("ERROR: " + error.message);
       }
     }
   } catch (error) {
-    console.log(error);
+    res.status(400).send("ERROR: " + error.message);
   }
 });

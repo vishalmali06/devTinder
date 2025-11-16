@@ -54,8 +54,6 @@ requestRouter.post(
         "You got a new friend request from " + req.user.firstName,
         req.user.firstName + " is " + status + " in " + toUser.firstName
       );
-      console.log(emailRes);
-
       res.json({
         message:
           req.user.firstName + " is " + status + " in " + toUser.firstName,
@@ -81,8 +79,6 @@ requestRouter.post(
           message: "Status is not allowed!",
         });
       }
-
-      console.log(requestId, loggedInUser._id, status);
 
       const connectionRequest = await ConnectionRequest.findOne({
         _id: requestId,
